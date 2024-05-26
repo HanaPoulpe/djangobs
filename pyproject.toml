@@ -1,0 +1,105 @@
+[tool.poetry]
+name = "djangobs"
+version = "0.0.1"
+description = "OBS websocket adapter for Django"
+authors = ["HanaPoulpe <hana@hanapoulpe.org>"]
+readme = "README.md"
+
+[tool.ruff]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+line-length = 90
+indent-width = 4
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+ignore = []
+fixable = ["ALL"]
+unfixable = []
+
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = "True"
+force_grid_wrap = 0
+known_first_party = "djangobs,tests,demo"
+default_section = "THIRDPARTY"
+use_parentheses = "True"
+line_length = 99
+skip_glob="**/migrations/**"
+src_paths = "src"
+
+[tool.importlinter]
+root_package = "djangobs"
+include_external_packages = "True"
+
+[[tool.importlinter.contracts]]
+name = "Prevent test/demo imports in djangobs"
+type = "forbidden"
+source_modules = [
+    "djangobs"
+]
+forbidden_modules = [
+    "tests",
+    "pytest",
+    "factory",
+    "demo",
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.6"
+obsws-python = "^1.7.0"
+
+
+[tool.poetry.group.dev.dependencies]
+fixit = "^2.1.0"
+mypy = "^1.10.0"
+pytest = "^8.2.1"
+pytest-django = "^4.8.0"
+django-stubs = "^5.0.0"
+pre-commit = "^3.7.1"
+commit-linter = "^1.0.3"
+ruff = "^0.4.5"
+import-linter = "^2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
