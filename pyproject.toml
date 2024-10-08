@@ -85,7 +85,7 @@ forbidden_modules = [
 
 [tool.poetry.dependencies]
 python = "^3.12"
-django = "^5.0.6"
+django = "^5.0.9"
 obsws-python = "^1.7.0"
 
 
